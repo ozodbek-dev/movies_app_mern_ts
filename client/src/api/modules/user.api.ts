@@ -1,4 +1,5 @@
 import privateClient from '../client/private.client'
+import publicClient from "../client/public.client";
 
 export enum UserEndPoints {
     signin = "user/signin",
@@ -7,50 +8,79 @@ export enum UserEndPoints {
     getFavorites = "user/favorites",
     addFavorite="user/favorites"
 }
-type BodyType={
+type SigninBodyType={
     username:string,
     password:string
 }
+type SignUpBodyType={
+    username:string,
+    password:string,
+    confirmPassword:string,
+    displayName:string
+}
+type PasswordUpdateType={
+    newPassword:string,
+    password:string,
+    confirmNewPassword:string,
+}
 
-// 2: 04 ga keldim https://www.youtube.com/watch?v=j-Sn1b4OlLA
 
-// const one:UserEndPoints.signin = UserEndPoints.signin;
-// console.log(one);
 
 const userApi = {
-    signin:async({username, password}:BodyType)=>{
+    signin:async({username, password}:SigninBodyType)=>{
         try {
-
+            const response = await publicClient.post(UserEndPoints.signin,{username,password})
+            return {response}
         }catch (e){
-
+            return {e}
         }
     },
-    signup:async({})=>{
+    signup:async({username, password, confirmPassword,displayName}:SignUpBodyType)=>{
         try {
+            const response = await publicClient
+                .post(UserEndPoints.signup,
+                    {username, password, confirmPassword,displayName});
+            return {response}
 
         }catch (e){
-
+            return {e}
         }
     },
-    getInfo:async({})=>{
+    passwordUpdate:async({password, confirmNewPassword,newPassword}:PasswordUpdateType)=>{
         try {
-
+            const response = await privateClient.put(
+                UserEndPoints.signup,
+                {password, confirmNewPassword,newPassword}
+            )
+            return {response};
         }catch (e){
-
+            return {e}
         }
     },
+    getInfo:async()=>{
+        try {
+            const response = await privateClient.get(
+                UserEndPoints.getInfo
+            )
+            return {response};
+        }catch (e){
+            return {e}
+        }
+    },
+
+
     getFavorites:async({})=>{
         try {
 
         }catch (e){
-
+            return {e}
         }
     },
     addFavorites:async({})=>{
         try {
 
         }catch (e){
-
+            return {e}
         }
     },
 }
