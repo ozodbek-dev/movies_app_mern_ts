@@ -7,6 +7,8 @@ import Logo from "./Logo";
 import menuConfigs from "../../api/configs/menu.configs";
 import {Link} from "react-router-dom";
 import UserMenu from "./UserMenu";
+import {setAuthModalOpen} from "../../redux/features/user/auth.modal.slice";
+import Sidebar from "./Sidebar";
 type ChildrenType   = ReactElement<any, string | JSXElementConstructor<any>>
 type ScrollAppBarTypes = {
     children:ChildrenType,
@@ -39,15 +41,19 @@ const Topbar = () => {
         const theme = themeMode === modes.dark ? modes.light : modes.dark;
         dispatch(setThemeMode(theme))
     }
+    const toggleSidebar = ()=>{
+        setSidebarOpen(prev=>!prev)
+    }
     return (
         <>
+            <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar}/>
             <ScrollAppBar window={()=>{}}>
                 <AppBar elevation={0} sx={{zIndex:999}}>
                     <Toolbar
                         sx={{alignItems:'center', justifyContent:"space-between"}}
                     >
                         <Stack direction="row" spacing={1} alignItems='center'>
-                            <IconButton color="inherit" sx={{mr:2,display:{md:'none'}}}>
+                            <IconButton color="inherit" sx={{mr:2,display:{md:'none'}}} onClick={toggleSidebar}>
                                 <Menu/>
                             </IconButton>
                             <Box sx={{display:{xs:"inline-block", md:"none"}}}>
@@ -84,7 +90,10 @@ const Topbar = () => {
                     {/*    main menu*/}
 
                     {/*    User Menu*/}
-                        <UserMenu/>
+                        <Stack spacing={3} direction={'row'} alignItems="center">
+                            {!user && <Button variant={"contained"} onClick={()=>dispatch(setAuthModalOpen(true))}>Sign In</Button>}
+                        </Stack>
+                        {user && <UserMenu/>}
                     {/*    User Menu*/}
                     </Toolbar>
                 </AppBar>

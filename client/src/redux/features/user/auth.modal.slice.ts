@@ -13,7 +13,7 @@ export const authModalSlice = createSlice({
     initialState,
     reducers:{
         setAuthModalOpen:(state,{payload}:PayloadAction<boolean>)=>{
-            state.authModalOpen=payload
+            state.authModalOpen= payload
         }
     }
 })

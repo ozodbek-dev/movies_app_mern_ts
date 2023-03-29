@@ -3,6 +3,8 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {ListItemButton, ListItemIcon, ListItemText, Menu, Typography} from "@mui/material";
 import menuConfigs from "../../api/configs/menu.configs";
 import {Link} from "react-router-dom";
+import {setUser} from "../../redux/features/user/user.slice";
+import {LogoutOutlined} from "@mui/icons-material";
 
 const UserMenu = () => {
     const dispatch = useAppDispatch();
@@ -45,6 +47,14 @@ const UserMenu = () => {
                                 </ListItemButton>
                             ))
                         }
+                        <ListItemButton sx={{borderRadius:"10px"}} onClick={()=>setUser(null)}>
+                            <ListItemIcon>
+                                <LogoutOutlined/>
+                                <ListItemText disableTypography primary={
+                                    <Typography textTransform="uppercase">Logout</Typography>
+                                }/>
+                            </ListItemIcon>
+                        </ListItemButton>
                     </Menu>
                 </>
 

@@ -22,11 +22,7 @@ type  InitialStateType = {
 }
 
 const initialState:  InitialStateType= {
-  user: {
-    username:"ozodbek",
-    displayName:"Bakhtiyorov",
-    token:"token"
-  },
+  user:null,
   listFavorites:[]
 };
 export const userSlice = createSlice({

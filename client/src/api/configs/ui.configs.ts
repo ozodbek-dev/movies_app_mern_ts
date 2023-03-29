@@ -38,10 +38,11 @@ const uiConfigs = {
                 backgroundImage:`url(${imagePath})`
             }
         },
-        size:{
-            sidebarWidth:"300px",
-            contentMaxWidth:"1366px"
-        }
+
+    }
+    , size:{
+        sidebarWidth:"300px",
+        contentMaxWidth:"1366px"
     }
 }
 
