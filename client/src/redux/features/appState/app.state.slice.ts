@@ -3,14 +3,14 @@ import exp from "constants";
 
 
 const initialState = {
-    appState:""
+    appState:"home"
 }
 export const appStateSlice = createSlice({
     name:"appState",
     initialState,
     reducers:{
         setAppState:(state,{payload}:PayloadAction<string>)=>{
-            state.appState=payload || ""
+            state.appState= payload || ""
         }
     }
 })

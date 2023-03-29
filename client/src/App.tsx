@@ -6,9 +6,11 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import {routes, routesGen} from "./routes/routes";
 import PageWrapper from "./components/common/PageWrapper";
+import {useEffect} from "react";
 
 const  App = ()=> {
     const {themeMode} = useAppSelector(state=>state.themeMode)
+
   return (
     <ThemeProvider theme={themeConfigs.custom({mode:themeMode})}>
         {/*config toastify*/}

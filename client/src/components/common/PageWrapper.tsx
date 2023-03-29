@@ -15,6 +15,10 @@ const PageWrapper = ({state,children}:Props) => {
             behavior:"smooth",
         })
         window.scrollTo(0,0)
+    }, []);
+
+    useEffect(() => {
+
       dispatch(setAppState)
     }, [state,dispatch]);
 
