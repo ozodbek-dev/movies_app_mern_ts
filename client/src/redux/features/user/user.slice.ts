@@ -17,7 +17,7 @@ export interface  FavoriteType{
   mediaRate:number
 }
 type  InitialStateType = {
-  user:null | UserType,
+  user:any | UserType,
   listFavorites: Array<FavoriteType>|[]
 }
 
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state,{payload}:PayloadAction<UserType|null>) => {
+    setUser: (state,{payload}) => {
       if(payload === null){
         localStorage.removeItem("actkn");
       }

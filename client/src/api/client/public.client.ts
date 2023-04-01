@@ -12,6 +12,7 @@ const publicClient = axios.create({
 })
 
 publicClient.interceptors.request.use( function (config):any {
+    console.log(config)
     return {
         ...config,
         headers:{
@@ -22,6 +23,7 @@ publicClient.interceptors.request.use( function (config):any {
 
 publicClient.interceptors.request.use(  function (response){
     if(response && response.data) return response.data;
+    console.log(response)
     return response;
 }, (err)=>{
     if(err) throw err.response.data

@@ -32,7 +32,8 @@ const userApi = {
             const response = await publicClient.post(UserEndPoints.signin,{username,password})
             return {response}
         }catch (e){
-            return {e}
+            if(e instanceof  Error) return {errMsg:e.message}
+            console.log(e)
         }
     },
     signup:async({username, password, confirmPassword,displayName}:SignUpBodyType)=>{
@@ -43,7 +44,8 @@ const userApi = {
             return {response}
 
         }catch (e){
-            return {e}
+            if(e instanceof  Error) return {e}
+            console.log(e)
         }
     },
     passwordUpdate:async({password, confirmNewPassword,newPassword}:PasswordUpdateType)=>{
@@ -54,7 +56,8 @@ const userApi = {
             )
             return {response};
         }catch (e){
-            return {e}
+            if(e instanceof  Error) return {errMsg:e.message}
+            console.log(e)
         }
     },
     getInfo:async()=>{
@@ -64,7 +67,8 @@ const userApi = {
             )
             return {response};
         }catch (e){
-            return {e}
+            if(e instanceof  Error) return {errMsg:e.message}
+            console.log(e)
         }
     },
 
@@ -73,14 +77,17 @@ const userApi = {
         try {
 
         }catch (e){
-            return {e}
+            if(e instanceof  Error) return {errMsg:e.message}
+            console.log(e)
         }
     },
     addFavorites:async({})=>{
         try {
 
         }catch (e){
-            return {e}
+            if(e instanceof  Error) return {errMsg:e.message}
+            console.log(e)
         }
     },
 }
+export default userApi
